@@ -1,0 +1,106 @@
+---
+title: "Survey Object"
+description: "A survey can be created with or without questions. Questions can be added later, will be ordered as specified in the array, and must include their type and required fields."
+---
+
+## Properties
+
+<ResponseField name="id" type="string" required={false}>
+  Unique identifier (UUID) for the survey
+</ResponseField>
+
+<ResponseField name="title" type="string" required={true}>
+  Title of the survey
+</ResponseField>
+
+<ResponseField name="business_description" type="string" required={false}>
+  Description of the business context for the survey
+</ResponseField>
+
+<ResponseField name="learning_description" type="string" required={false}>
+  Description of what insights the survey aims to gather
+</ResponseField>
+
+<ResponseField name="created_at" type="string" required={false}>
+  Timestamp when the survey was created
+</ResponseField>
+
+<ResponseField name="questions" type="array" required={false}>
+  Array of question objects. See <a href="/api-reference/question-object">Question Object</a> for details.
+</ResponseField>
+
+## Examples
+
+<CodeGroup>
+```json Basic Survey
+{
+  "id": "survey-uuid",
+  "title": "Customer Feedback",
+  "business_description": "Gathering feedback about our service",
+  "learning_description": "Understanding customer satisfaction",
+  "created_at": "2024-03-14T12:00:00Z",
+  "questions": []
+}
+```
+
+```json Survey with Questions
+{
+  "id": "survey-uuid",
+  "title": "Product Feedback",
+  "business_description": "Gathering feedback about our new product",
+  "questions": [
+    {
+      "question_type": "multiple_choice",
+      "question": "How satisfied are you with the product?",
+      "options": [
+        "Very Satisfied",
+        "Satisfied",
+        "Neutral",
+        "Dissatisfied"
+      ],
+      "required": true,
+      "order": 0
+    },
+    {
+      "question_type": "open",
+      "question": "What improvements would you suggest?",
+      "number_follow_ups": 2,
+      "required": true,
+      "order": 1
+    }
+  ]
+}
+```
+
+```json Complete Survey
+{
+  "id": "survey-uuid",
+  "title": "Comprehensive Feedback",
+  "business_description": "Annual customer satisfaction survey",
+  "learning_description": "Gathering detailed feedback on all product areas",
+  "created_at": "2024-03-14T12:00:00Z",
+  "questions": [
+    {
+      "question_type": "rating",
+      "question": "How likely are you to recommend us?",
+      "options": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "required": true,
+      "order": 0
+    },
+    {
+      "question_type": "multiselect",
+      "question": "Which features do you use regularly?",
+      "options": ["Dashboard", "Reports", "Analytics", "API"],
+      "max_choices": 3,
+      "required": true,
+      "order": 1
+    }
+  ]
+}
+```
+</CodeGroup>
+
+
+See also:
+- <a href="/api-reference/question-object">Question Object</a>
+- <a href="/api-reference/response-object">Response Object</a> 

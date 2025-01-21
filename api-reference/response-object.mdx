@@ -1,0 +1,153 @@
+---
+title: "Response Object"
+description: "Survey response request can be submitted one at a time or all at once. Responses can be retrieved individually, as a complete survey response, or as a pandas DataFrame for analysis."
+---
+
+## Base Properties
+
+<ResponseField name="id" type="string" required={false}>
+  Unique identifier (UUID) for the response
+</ResponseField>
+
+<ResponseField name="user_id" type="string" required={true}>
+  Identifier of the user submitting responses
+</ResponseField>
+
+<ResponseField name="survey_id" type="string" required={true}>
+  UUID of the survey being answered
+</ResponseField>
+
+<ResponseField name="response_metadata" type="object" required={false}>
+  Additional metadata about the response session
+</ResponseField>
+
+<ResponseField name="created_at" type="string" required={false}>
+  Timestamp when the response was created
+</ResponseField>
+
+## Response Types
+
+<Tabs>
+  <Tab title="Multiple Choice">
+    <ResponseField name="question_id" type="string" required={true}>
+      UUID of the question being answered
+    </ResponseField>
+
+    <ResponseField name="type" type="string" required={true}>
+      Must be "multiple_choice"
+    </ResponseField>
+
+    <ResponseField name="selected_option_index" type="integer" required={true}>
+      Index of the selected option (zero-based)
+    </ResponseField>
+
+    <Note>
+      - Index must be within the range of available options
+      - Only one option can be selected
+    </Note>
+
+    #### Example
+    ```json
+    {
+      "question_id": "q1-uuid",
+      "type": "multiple_choice",
+      "selected_option_index": 1
+    }
+    ```
+  </Tab>
+
+  <Tab title="Open-Ended">
+    <ResponseField name="question_id" type="string" required={true}>
+      UUID of the question being answered
+    </ResponseField>
+
+    <ResponseField name="type" type="string" required={true}>
+      Must be "open"
+    </ResponseField>
+
+    <ResponseField name="text_response" type="string" required={true}>
+      The text answer provided
+    </ResponseField>
+
+    <ResponseField name="follow_up_order" type="integer" required={false}>
+      For follow-up questions, the index of this follow-up
+    </ResponseField>
+
+    <Note>
+      - Follow-up responses include follow_up_order
+      - Text responses have no length limit
+    </Note>
+
+    #### Example
+    ```json
+    {
+      "question_id": "q2-uuid",
+      "type": "open",
+      "text_response": "The service was excellent",
+      "question_text": "How was your experience?"
+    }
+    ```
+  </Tab>
+
+  <Tab title="Rating">
+    <ResponseField name="question_id" type="string" required={true}>
+      UUID of the question being answered
+    </ResponseField>
+
+    <ResponseField name="type" type="string" required={true}>
+      Must be "rating"
+    </ResponseField>
+
+    <ResponseField name="selected_option_index" type="integer" required={true}>
+      Index of the selected rating (zero-based)
+    </ResponseField>
+
+    <Note>
+      - Index must be within the range of rating options
+      - Only one rating can be selected
+    </Note>
+
+    #### Example
+    ```json
+    {
+      "question_id": "q3-uuid",
+      "type": "rating",
+      "selected_option_index": 3
+    }
+    ```
+  </Tab>
+
+  <Tab title="Multiselect">
+    <ResponseField name="question_id" type="string" required={true}>
+      UUID of the question being answered
+    </ResponseField>
+
+    <ResponseField name="type" type="string" required={true}>
+      Must be "multiselect"
+    </ResponseField>
+
+    <ResponseField name="selected_option_indices" type="array" required={true}>
+      Array of selected option indices
+    </ResponseField>
+
+    <Note>
+      - Number of selections must not exceed max_choices
+      - Indices must be within range of available options
+      - Each index can only appear once
+    </Note>
+
+    #### Example
+    ```json
+    {
+      "question_id": "q4-uuid",
+      "type": "multiselect",
+      "selected_option_indices": [0, 2]
+    }
+    ```
+  </Tab>
+</Tabs>
+
+See also:
+- <a href="/api-reference/responses/initialize-a-new-survey-response-session">Initialize Response Session</a>
+- <a href="/api-reference/responses/add-a-single-question-response">Add Single Answer</a>
+- <a href="/api-reference/responses/submit-a-new-response-for-a-survey">Submit Complete Response</a> 

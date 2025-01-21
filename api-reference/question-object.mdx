@@ -1,0 +1,140 @@
+---
+title: "Question Object"
+description: "The core Question object structure and its types"
+---
+
+## Base Properties
+Shared properties between all question types:
+
+<ResponseField name="id" type="string" required={false}>
+  Unique identifier (UUID) for the question
+</ResponseField>
+
+<ResponseField name="question_type" type="string" required={true}>
+  Type of question. One of: "multiple_choice", "open", "multiselect", "rating"
+</ResponseField>
+
+<ResponseField name="question" type="string" required={true}>
+  The question text
+</ResponseField>
+
+<ResponseField name="required" type="boolean" required={false}>
+  Whether an answer is required. Defaults to true
+</ResponseField>
+
+<ResponseField name="order" type="integer" required={false}>
+  Position of the question in the survey (zero-based)
+</ResponseField>
+
+<ResponseField name="survey_id" type="string" required={false}>
+  UUID of the parent survey
+</ResponseField>
+
+## Question Types
+Unique properties for each question type:
+<Tabs>
+  <Tab title="Multiple Choice">
+    <ResponseField name="options" type="array" required={true}>
+      Array of choice options for the question (minimum 2 options)
+    </ResponseField>
+
+    <Note>
+      - Options must be unique
+      - Selected option will be referenced by its index (0-based)
+    </Note>
+
+    #### Example
+    ```json
+    {
+      "id": "q1-uuid",
+      "question_type": "multiple_choice",
+      "question": "How did you hear about us?",
+      "options": ["Social Media", "Friend", "Advertisement"],
+      "required": true,
+      "order": 0
+    }
+    ```
+  </Tab>
+
+  <Tab title="Open-Ended">
+    <ResponseField name="number_follow_ups" type="integer" required={false}>
+      Number of follow-up questions (minimum: 0)
+    </ResponseField>
+
+    <ResponseField name="follow_up_instructions" type="string" required={false}>
+      Instructions for follow-up questions
+    </ResponseField>
+
+    <Note>
+      - Follow-up questions inherit the same instructions
+      - Follow-ups are presented sequentially after main answer
+      - All follow-ups are open-ended questions
+    </Note>
+
+    #### Example
+    ```json
+    {
+      "id": "q2-uuid",
+      "question_type": "open",
+      "question": "What do you think about our service?",
+      "number_follow_ups": 2,
+      "follow_up_instructions": "Please elaborate",
+      "required": true,
+      "order": 1
+    }
+    ```
+  </Tab>
+
+  <Tab title="Rating">
+    <ResponseField name="options" type="array" required={true}>
+      Array of rating labels (minimum 2 options)
+    </ResponseField>
+
+    <Note>
+      - Options represent scale points from lowest to highest
+      - Can use numeric ("1" to "5") or text labels
+      - Selected rating will be referenced by its index (0-based)
+    </Note>
+
+    #### Example
+    ```json
+    {
+      "id": "q3-uuid",
+      "question_type": "rating",
+      "question": "How would you rate our service?",
+      "options": ["Poor", "Fair", "Good", "Excellent"],
+      "required": true,
+      "order": 2
+    }
+    ```
+  </Tab>
+
+  <Tab title="Multiselect">
+    <ResponseField name="options" type="array" required={true}>
+      Array of choice options (minimum 2 options)
+    </ResponseField>
+
+    <ResponseField name="max_choices" type="integer" required={true}>
+      Maximum number of selections allowed (minimum: 1)
+    </ResponseField>
+
+    <Note>
+      - Options must be unique
+      - max_choices must be between 1 and number of options
+      - Selected options will be referenced by their indices (0-based)
+    </Note>
+
+    #### Example
+    ```json
+    {
+      "id": "q4-uuid",
+      "question_type": "multiselect",
+      "question": "Which features do you use?",
+      "options": ["Email", "Calendar", "Tasks", "Notes"],
+      "max_choices": 2,
+      "required": true,
+      "order": 3
+    }
+    ```
+  </Tab>
+</Tabs>
