@@ -54,7 +54,8 @@
             "type": "string"
           },
           "type": {
-            "$ref": "#/components/schemas/QuestionType"
+            "$ref": "#/components/schemas/QuestionType",
+            "description": "Type of question this response corresponds to"
           }
         },
         "required": [
@@ -69,6 +70,11 @@
           {
             "type": "object",
             "properties": {
+              "question_type": {
+                "$ref": "#/components/schemas/QuestionType",
+                "enum": ["multiple_choice"],
+                "description": "Must be 'multiple_choice'"
+              },
               "options": {
                 "type": "array",
                 "items": {
@@ -115,6 +121,11 @@
           {
             "type": "object",
             "properties": {
+              "question_type": {
+                "$ref": "#/components/schemas/QuestionType",
+                "enum": ["multiselect"],
+                "description": "Must be 'multiselect'"
+              },
               "max_choices": {
                 "type": "integer",
                 "minimum": 1,
@@ -176,6 +187,11 @@
           {
             "type": "object",
             "properties": {
+              "question_type": {
+                "$ref": "#/components/schemas/QuestionType",
+                "enum": ["open"],
+                "description": "Must be 'open'"
+              },
               "follow_up_instructions": {
                 "type": "string",
                 "description": "Instructions for follow-up questions",
@@ -222,6 +238,7 @@
         ]
       },
       "QuestionType": {
+        "type": "string",
         "enum": [
           "multiple_choice",
           "open",
@@ -236,6 +253,11 @@
           {
             "type": "object",
             "properties": {
+              "question_type": {
+                "$ref": "#/components/schemas/QuestionType",
+                "enum": ["rating"],
+                "description": "Must be 'rating'"
+              },
               "options": {
                 "type": "array",
                 "items": {
