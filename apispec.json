@@ -1,5 +1,4 @@
-{ "x-showMethods": false,
-  "components": {
+{   "components": {
     "schemas": {
       "BaseQuestion": {
         "type": "object",
