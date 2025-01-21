@@ -1193,44 +1193,27 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "examples": {
-                "multiple_choice": {
-                  "summary": "Multiple Choice Question",
-                  "value": {
-                    "options": [
-                      "Social Media",
-                      "Friend",
-                      "Advertisement"
-                    ],
-                    "question": "How did you hear about us?",
-                    "question_type": "multiple_choice",
-                    "required": true
-                  }
-                },
-                "open_question": {
-                  "summary": "Open Question",
-                  "value": {
-                    "follow_up_instructions": "Please elaborate",
-                    "number_follow_ups": 2,
-                    "question": "What do you think about our service?",
-                    "question_type": "open",
-                    "required": true
-                  }
-                }
-              },
               "schema": {
                 "oneOf": [
                   {
-                    "$ref": "#/components/schemas/OpenQuestion"
+                    "$ref": "#/components/schemas/MultipleChoiceQuestion",
+                    "title": "Multiple Choice Question",
+                    "description": "Single selection from multiple options"
                   },
                   {
-                    "$ref": "#/components/schemas/MultipleChoiceQuestion"
+                    "$ref": "#/components/schemas/OpenQuestion",
+                    "title": "Open Question",
+                    "description": "Free text response with optional follow-ups"
                   },
                   {
-                    "$ref": "#/components/schemas/RatingQuestion"
+                    "$ref": "#/components/schemas/RatingQuestion",
+                    "title": "Rating Question",
+                    "description": "Rating scale with custom labels"
                   },
                   {
-                    "$ref": "#/components/schemas/MultiselectQuestion"
+                    "$ref": "#/components/schemas/MultiselectQuestion",
+                    "title": "Multiselect Question",
+                    "description": "Multiple selections with max choices limit"
                   }
                 ]
               }
