@@ -1,18 +1,26 @@
-{
+{"openapi": "./apispec.json",
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Survey API",
+  "font": {
+    "family": "DM Sans",
+    "weight": 200
+  },
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/noback.png",
+    "light": "/logo/noback.png"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#94A3B8",
+    "light": "#CBD5E1",
+    "dark": "#64748B",
+    "background": {
+      "dark": "#05192D",
+      "light": "#F2F8FF"
+    },
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#94A3B8",
+      "to": "#CBD5E1"
     }
   },
   "topbarLinks": [
