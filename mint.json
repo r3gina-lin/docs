@@ -98,18 +98,6 @@
         "questions/reorder-a-question-within-a-survey"
       ]
     },
-    {
-      "group": "Response Endpoints",
-      "pages": [
-        "responses/initialize-a-new-survey-response-session",
-        "responses/submit-a-new-response-for-a-survey",
-        "responses/get-all-responses-for-a-survey",
-        "responses/get-all-responses-for-a-survey-as-a-pandas-dataframe",
-        "responses/get-the-next-question-based-on-current-responses",
-        "responses/add-a-single-question-response",
-        "responses/delete-a-specific-response-for-a-survey"
-      ]
-    }
   ],
   "footerSocials": {
     "x": "https://x.com/mintlify",
