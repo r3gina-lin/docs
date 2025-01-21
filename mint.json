@@ -75,11 +75,36 @@
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Survey Endpoints",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "surveys/list-all-surveys",
+        "surveys/create-a-new-survey",
+        "surveys/get-a-specific-survey-by-id",
+        "surveys/update-a-specific-survey",
+        "surveys/delete-a-specific-survey"
+      ]
+    },
+    {
+      "group": "Question Endpoints",
+      "pages": [
+        "questions/get-all-questions-of-a-survey",
+        "questions/add-a-new-question-to-a-survey",
+        "questions/get-a-specific-question-of-a-survey",
+        "questions/update-a-specific-question",
+        "questions/delete-a-specific-question-from-a-survey",
+        "questions/reorder-a-question-within-a-survey"
+      ]
+    },
+    {
+      "group": "Response Endpoints",
+      "pages": [
+        "responses/initialize-a-new-survey-response-session",
+        "responses/submit-a-new-response-for-a-survey",
+        "responses/get-all-responses-for-a-survey",
+        "responses/get-all-responses-for-a-survey-as-a-pandas-dataframe",
+        "responses/get-the-next-question-based-on-current-responses",
+        "responses/add-a-single-question-response",
+        "responses/delete-a-specific-response-for-a-survey"
       ]
     }
   ],
